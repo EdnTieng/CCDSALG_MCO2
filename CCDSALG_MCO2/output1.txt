@@ -1,0 +1,14 @@
+16
+9
+8
+1
+1.222222
+1 brown 1 YES 1
+7 over 7 YES 1
+8 jumps 8 YES 1
+9 quick 9 YES 1
+10 fox 10 YES 1
+11 lazy 11 YES 1
+12 dog 10 NO 3
+16 THE 16 YES 1
+17 the 17 YES 1
