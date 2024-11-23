@@ -36,7 +36,21 @@ int read_input_file(const char *filename, char strings[][MAX_STR_LEN + 1]) {
 }
 
 /**
- * Writes the processed hash table to the output file.
+ * Writes the hash table statistics and data to an output file.
+ * 
+ *  Writes the contents of the hash table into an output file 
+ * 
+ * 
+ * @param filename The name of the output file to write.
+ * @param total_strings The total number of strings read from the input file.
+ * @param stored_strings The number of unique strings successfully stored in the hash table.
+ * @param home_addresses The number of keys stored in their home addresses (no collision).
+ * @param collisions The number of keys not stored in their home addresses (collision occurred).
+ * @param avg_comparisons The average number of string comparisons during the search operation.
+ * @param hash_table The hash table containing the stored strings.
+ * @param home_indices Array storing the home addresses of the strings in the hash table.
+ * @param comparisons Array storing the number of string comparisons for each string.
+ * @param hash_table_size The size of the hash table.
  */
 void write_output_file(
     const char *filename,
@@ -49,6 +63,8 @@ void write_output_file(
     unsigned int *home_indices,
     unsigned int *comparisons,
     int hash_table_size) {
+    
+    char output_string[MAX_STR_LEN + 1];
     
     FILE *file = fopen(filename, "w");
     if (!file) {
@@ -73,6 +89,8 @@ void write_output_file(
                     home_indices[i],                 // Home address
                     (i == home_indices[i]) ? "YES" : "NO", // Collision status
                     comparisons[i]);                 // String comparisons
+        } else{
+            fprintf(file, "%d --- --- --- ---\n", i);
         }
     }
 
@@ -81,7 +99,7 @@ void write_output_file(
 
 int main() {
     char input_filename[100], output_filename[100];
-    char strings[MAX_1D_ARRAY][MAX_STR_LEN + 1]; // Maximum of n=16384 strings
+    char strings[MAX_1D_ARRAY][MAX_STR_LEN + 1]; 
     int i;
 
     // Prompt user for input and output file names
