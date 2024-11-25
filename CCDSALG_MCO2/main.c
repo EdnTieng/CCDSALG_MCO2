@@ -64,7 +64,6 @@ void write_output_file(
     unsigned int *comparisons,
     int hash_table_size) {
     
-    char output_string[MAX_STR_LEN + 1];
     
     FILE *file = fopen(filename, "w");
     if (!file) {
